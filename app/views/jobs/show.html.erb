@@ -1,0 +1,32 @@
+<div class="job-content">
+<h1 class="jobtitle"><%= @job.title %></h1>
+<p class="date">
+ <%= t("job.posted") %>: <%= @job.created_at.to_date %>
+ 
+ <% if @job.owner == current_user  %>	
+ 	<%= t("job.deadline") %>: <%= @job.deadline || t("job.deadline_forever") %>
+ 	<span class="manage">
+ 	<%= link_to t(:edit), edit_job_path(@job), :class => "edit" %>	
+ 	<% if @job.closed? %>
+ 		<%= link_to t(:open), open_job_path(@job), :confirm => t(:are_you_sure), :method => :put, :class => "open" %>
+ 	<% else %>
+ 		<%= link_to t(:close), close_job_path(@job), :confirm => t(:are_you_sure), :method => :put, :class => "close" %>
+ 	<% end %>	
+ 	<%= link_to t(:delete), job_path(@job), :confirm => t(:are_you_sure), :method => :delete, :class => "delete" %>
+ 	</span>	
+ <% elsif @job.deadline %>
+ 	<%= t("job.deadline") %>: <%= @job.deadline %>
+ <% end %>
+</p>
+
+<p class="social">
+
+	<%= link_to "Tweet this job!", "http://twitter.com?status=#{@job.social_link_content}", :class => "twitter", :title => "Tweet this job!" %>
+<%= link_to "Facebook this job!", "http://www.facebook.com/sharer.php?u=#{@job.social_link_url}&t=#{@job.social_link_title}", :class => "facebook", :title => "Facebook this job!" %>
+	<%= link_to "Plurk this job!", "http://plurk.com?status=#{@job.social_link_content}", :class => "plurk", :title => "Plurk this job" %>
+</p>
+
+<%= render :partial => "job", :object => @job %>
+
+<a href="/" class="backto">Back to job board</a>
+</div>

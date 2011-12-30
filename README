@@ -1,0 +1,19 @@
+demo only the Ror 2.0.2 code of the original Geek Project, the Flex portion is  not in as it required
+Adobe Flex to run
+
+Original Project for Ruby on Rails 2  (Geek F. for QCP @ 2008 ) and is upgraded to Rails 3.1.1.
+Project utilized Devise (1.5.3) , RSpec-rails (2.7.0), Cucumber-rails(1.2.1)., database_cleaner (0.7.0), 
+Factory_girl_rails (1.4.0), Capybara (1.1.2)
+
+As the project is based on devise, please rune the following prior to start up :
+- bundle update
+- rake db:create
+- rake db:migrate
+- rake db:seed
+
+then start the web server by 
+- rails s
+
+note: project use SQLITE3
+
+

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to GeekFinder version 3</title>
+  <%= stylesheet_link_tag    "application" %>
+
+<!--  + Dec.26.2011 -->
+  <%= stylesheet_link_tag "colorbox/colorbox" %>
+  
+  <%= javascript_include_tag "application" %>
+<!-- + Dec.26.2011 -->
+  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
+  <%= javascript_include_tag "rails", "jquery.formLabels1.0.js", "jquery.colorbox-min" %>
+
+<script type="text/javascript">
+	$(function(){
+		$.fn.formLabels();
+		$("#search-form").submit(function(){
+			var formVal = $("form").serialize();
+			parent.$("#default div.results").html(formVal);
+		})
+	});
+</script>
+  
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<!-- + Dec.28.2011 -->
+<div id="container">
+
+      <div id="header">
+        <%= image_tag 'logo3.png' %>
+      </div>
+
+<!-- + Dec.27.2011 -->
+  <ul class="hmenu">
+    <%= render 'shared/navigation' %>
+  </ul>
+  <%- flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+  <%- end -%>
+
+<%= yield %>
+
+</div>
+
+
+
+
+<!-- + Dec.28.2011 -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-145330-14']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>
